@@ -18,7 +18,7 @@ class API
 
 	function fetch_all()
 	{
-		$query = "SELECT * FROM tbl_sample ORDER BY id";
+		$query = "SELECT * FROM login ORDER BY id";
 		$statement = $this->connect->prepare($query);
 		if($statement->execute())
 		{
@@ -32,16 +32,16 @@ class API
 
 	function insert()
 	{
-		if(isset($_POST["first_name"]))
+		if(isset($_POST["email"]))
 		{
 			$form_data = array(
-				':first_name'		=>	$_POST["first_name"],
-				':last_name'		=>	$_POST["last_name"]
+				':email'		=>	$_POST["email"],
+				':password'		=>	$_POST["password"]
 			);
 			$query = "
-			INSERT INTO tbl_sample 
-			(first_name, last_name) VALUES 
-			(:first_name, :last_name)
+			INSERT INTO login 
+			(email, password) VALUES 
+			(:email, :password)
 			";
 			$statement = $this->connect->prepare($query);
 			if($statement->execute($form_data))
@@ -68,14 +68,14 @@ class API
 
 	function fetch_single($id)
 	{
-		$query = "SELECT * FROM tbl_sample WHERE id='".$id."'";
+		$query = "SELECT * FROM login WHERE id='".$id."'";
 		$statement = $this->connect->prepare($query);
 		if($statement->execute())
 		{
 			foreach($statement->fetchAll() as $row)
 			{
-				$data['first_name'] = $row['first_name'];
-				$data['last_name'] = $row['last_name'];
+				$data['email'] = $row['email'];
+				$data['password'] = $row['password'];
 			}
 			return $data;
 		}
@@ -83,16 +83,16 @@ class API
 
 	function update()
 	{
-		if(isset($_POST["first_name"]))
+		if(isset($_POST["email"]))
 		{
 			$form_data = array(
-				':first_name'	=>	$_POST['first_name'],
-				':last_name'	=>	$_POST['last_name'],
+				':email'	=>	$_POST['email'],
+				':password'	=>	$_POST['password'],
 				':id'			=>	$_POST['id']
 			);
 			$query = "
-			UPDATE tbl_sample 
-			SET first_name = :first_name, last_name = :last_name 
+			UPDATE login 
+			SET email = :email, password = :password 
 			WHERE id = :id
 			";
 			$statement = $this->connect->prepare($query);
@@ -119,7 +119,7 @@ class API
 	}
 	function delete($id)
 	{
-		$query = "DELETE FROM tbl_sample WHERE id = '".$id."'";
+		$query = "DELETE FROM login WHERE id = '".$id."'";
 		$statement = $this->connect->prepare($query);
 		if($statement->execute())
 		{

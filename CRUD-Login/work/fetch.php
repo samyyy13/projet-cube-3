@@ -2,7 +2,7 @@
 
 //fetch.php
 
-$api_url = "http://localhost/MyProject/rest-api-crud-using-php/api/test_api.php?action=fetch_all";
+$api_url = "http://localhost/MyProject/CRUD-login/api/test_api.php?action=fetch_all";
 
 $client = curl_init($api_url);
 
@@ -20,8 +20,8 @@ if(($result) > 0)
 	{
 		$output .= '
 		<tr>
-			<td>'.$row->first_name.'</td>
-			<td>'.$row->last_name.'</td>
+			<td>'.$row->email.'</td>
+			<td>'.$row->password.'</td>
 			<td><button type="button" name="edit" class="btn btn-warning btn-xs edit" id="'.$row->id.'">Edit</button></td>
 			<td><button type="button" name="delete" class="btn btn-danger btn-xs delete" id="'.$row->id.'">Delete</button></td>
 		</tr>

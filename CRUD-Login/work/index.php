@@ -20,8 +20,8 @@
 				<table class="table table-bordered table-striped">
 					<thead>
 						<tr>
-							<th>First Name</th>
-							<th>Last Name</th>
+							<th>Email</th>
+							<th>Password</th>
 							<th>Edit</th>
 							<th>Delete</th>
 						</tr>
@@ -43,11 +43,11 @@
 		      	</div>
 		      	<div class="modal-body">
 		      		<div class="form-group">
-			        	<label>Enter First Name</label>
+			        	<label>Enter Email</label>
 			        	<input type="text" name="first_name" id="first_name" class="form-control" />
 			        </div>
 			        <div class="form-group">
-			        	<label>Enter Last Name</label>
+			        	<label>Enter Password</label>
 			        	<input type="text" name="last_name" id="last_name" class="form-control" />
 			        </div>
 			    </div>
@@ -88,13 +88,13 @@ $(document).ready(function(){
 
 	$('#api_crud_form').on('submit', function(event){
 		event.preventDefault();
-		if($('#first_name').val() == '')
+		if($('#email').val() == '')
 		{
-			alert("Enter First Name");
+			alert("Enter email");
 		}
-		else if($('#last_name').val() == '')
+		else if($('#password').val() == '')
 		{
-			alert("Enter Last Name");
+			alert("Enter password");
 		}
 		else
 		{
@@ -133,7 +133,7 @@ $(document).ready(function(){
 			{
 				$('#hidden_id').val(id);
 				$('#first_name').val(data.first_name);
-				$('#last_name').val(data.last_name);
+				$('#first_name').val(data.last_name);
 				$('#action').val('update');
 				$('#button_action').val('Update');
 				$('.modal-title').text('Edit Data');
